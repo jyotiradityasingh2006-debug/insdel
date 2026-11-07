@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>insdel — Groceries delivered in minutes</title>
+<meta name="description" content="insdel delivers fresh groceries, snacks and daily essentials in minutes from our single neighbourhood store." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b7a3b'/%3E%3Cpath d='M36 8 16 36h14l-4 20 22-30H33l3-18z' fill='%23ffd43b'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="announce">
+  <span>⚡ Free delivery on orders above ₹199</span>
+  <span class="announce-sep">·</span>
+  <span>One store. Every essential. Delivered in minutes.</span>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="logo" aria-label="insdel home">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M13.5 2 4.5 13.5h6L9.5 22l10-12.5h-6.2L13.5 2Z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="logo-text">ins<span>del</span></span>
+    </a>
+
+    <button class="location" id="locationBtn" title="Our single delivery store">
+      <span class="location-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+      </span>
+      <span class="location-text">
+        <span class="location-title">Delivery in <b>8 minutes</b></span>
+        <span class="location-sub">Insdel Store · MG Road</span>
+      </span>
+      <span class="location-caret">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </span>
+    </button>
+
+    <div class="search">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input type="text" id="searchInput" placeholder="Search for milk, snacks, fruits…" autocomplete="off" aria-label="Search products" />
+      <button class="search-clear" id="searchClear" aria-label="Clear search" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="header-actions">
+      <button class="icon-btn profile-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>
+        </svg>
+      </button>
+      <button class="cart-btn" id="cartBtnHeader" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/>
+          <path d="M2.5 3.5h2.2l2.4 12.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L21.5 7H6"/>
+        </svg>
+        <span class="cart-btn-text">My Cart</span>
+        <span class="cart-count" id="cartCountHeader" hidden>0</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Category strip -->
+  <section class="container categories-wrap">
+    <nav class="category-strip" id="categoryStrip" aria-label="Shop by category"></nav>
+  </section>
+
+  <!-- Hero -->
+  <section class="container hero-grid">
+    <div class="carousel" id="carousel">
+      <div class="slides" id="slides"></div>
+      <button class="carousel-arrow prev" id="prevSlide" aria-label="Previous slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg>
+      </button>
+      <button class="carousel-arrow next" id="nextSlide" aria-label="Next slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <aside class="hero-side">
+      <a href="#products" class="promo-card promo-fresh" data-promo="Fruits &amp; Vegetables">
+        <div class="promo-copy">
+          <span class="promo-tag">Fresh picks</span>
+          <h3>Farm-fresh<br />every morning</h3>
+          <span class="promo-link">Shop fruits &amp; veggies →</span>
+        </div>
+        <div class="promo-emoji">🥦<span>🍎</span></div>
+      </a>
+      <a href="#products" class="promo-card promo-fast" data-promo="Snacks &amp; Munchies">
+        <div class="promo-copy">
+          <span class="promo-tag">Under 8 minutes</span>
+          <h3>Midnight<br />cravings, solved</h3>
+          <span class="promo-link">Grab snacks →</span>
+        </div>
+        <div class="promo-emoji">🍿<span>🥤</span></div>
+      </a>
+    </aside>
+  </section>
+
+  <!-- Trust row -->
+  <section class="container trust-row">
+    <div class="trust-item">
+      <span class="trust-emoji">⚡</span>
+      <div><b>8-minute delivery</b><small>From store to door</small></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-emoji">🏪</span>
+      <div><b>One trusted store</b><small>MG Road · quality checked</small></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-emoji">🥬</span>
+      <div><b>Freshness promise</b><small>No questions asked returns</small></div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-emoji">💸</span>
+      <div><b>Best prices</b><small>Everyday low prices</small></div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="container products-section" id="products">
+    <div class="section-head">
+      <div>
+        <h2 id="productsTitle">Bestsellers near you</h2>
+        <p class="section-sub" id="productsSub">Hand-picked essentials from Insdel Store, MG Road</p>
+      </div>
+      <div class="filter-chips" id="filterChips"></div>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="empty-state" id="emptyState" hidden>
+      <div class="empty-emoji">🛒</div>
+      <h3>No items found</h3>
+      <p>Try a different search or category.</p>
+      <button class="btn-primary" id="resetFilters">Show all products</button>
+    </div>
+  </section>
+
+  <!-- Single store banner -->
+  <section class="container store-banner">
+    <div class="store-banner-inner">
+      <div class="store-badge">🏪</div>
+      <div class="store-copy">
+        <h2>Everything from one place.</h2>
+        <p>We deliver exclusively from <b>Insdel Store, Shop 12, MG Road</b> — so your order is packed once, checked twice, and at your door in minutes.</p>
+      </div>
+      <div class="store-meta">
+        <div><span>Open today</span><b>7:00 AM – 11:00 PM</b></div>
+        <div><span>Service area</span><b>Within 3 km</b></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.5 2 4.5 13.5h6L9.5 22l10-12.5h-6.2L13.5 2Z" fill="currentColor"/></svg>
+        </span>
+        <span class="logo-text">ins<span>del</span></span>
+      </a>
+      <p>Groceries, snacks and daily essentials — delivered in minutes from our neighbourhood store.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#products">Fruits &amp; Vegetables</a>
+      <a href="#products">Dairy &amp; Breakfast</a>
+      <a href="#products">Snacks &amp; Munchies</a>
+      <a href="#products">Cold Drinks</a>
+      <a href="#products">Home &amp; Cleaning</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About insdel</a>
+      <a href="#">Careers</a>
+      <a href="#">Partner with us</a>
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="/admin">Admin panel</a>
+    </div>
+    <div class="footer-col footer-store">
+      <h4>Our only store</h4>
+      <p><b>Insdel Store</b><br />Shop 12, MG Road,<br />Near City Mall, Bengaluru 560001</p>
+      <p class="footer-hours">🕖 7:00 AM – 11:00 PM, all days</p>
+      <p>📞 +91 98765 43210</p>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© 2026 insdel. All rights reserved.</span>
+    <span>Made with 🥬 for your everyday needs</span>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="drawer-overlay" id="drawerOverlay" hidden></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+  <div class="drawer-head">
+    <h3>My Cart <span id="cartItemsLabel"></span></h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div class="delivery-progress" id="deliveryProgress">
+    <div class="delivery-progress-text" id="deliveryProgressText"></div>
+    <div class="delivery-progress-bar"><span id="deliveryProgressFill"></span></div>
+  </div>
+
+  <div class="drawer-body" id="cartItems"></div>
+
+  <div class="drawer-empty" id="cartEmpty">
+    <div class="empty-emoji">🧺</div>
+    <h4>Your cart is empty</h4>
+    <p>Add a few essentials and we'll get them to you in 8 minutes.</p>
+    <button class="btn-primary" id="startShopping">Start shopping</button>
+  </div>
+
+  <div class="drawer-foot" id="cartFooter">
+    <div class="bill">
+      <h4>Bill details</h4>
+      <div class="bill-row"><span>Item total (MRP)</span><span id="billMrp">₹0</span></div>
+      <div class="bill-row discount"><span>Discount</span><span id="billDiscount">−₹0</span></div>
+      <div class="bill-row"><span>Delivery fee</span><span id="billDelivery">₹0</span></div>
+      <div class="bill-row"><span>Handling fee</span><span id="billHandling">₹2</span></div>
+      <div class="bill-row total"><span>To pay</span><span id="billTotal">₹0</span></div>
+      <div class="bill-savings" id="billSavings" hidden></div>
+    </div>
+    <button class="btn-checkout" id="checkoutBtn">
+      <span>Place order</span>
+      <span id="checkoutTotal">₹0</span>
+    </button>
+    <p class="drawer-note">⚡ Delivered from Insdel Store, MG Road</p>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal-overlay" id="checkoutOverlay" hidden>
+  <form class="checkout-card" id="checkoutForm">
+    <div class="checkout-head">
+      <h3>Delivery details</h3>
+      <button type="button" class="checkout-close" id="checkoutClose" aria-label="Close">✕</button>
+    </div>
+    <p class="checkout-sub">Delivered from <b>Insdel Store, MG Road</b> in about <b id="checkoutEta">8 minutes</b>.</p>
+    <label class="checkout-field">Full name
+      <input id="custName" maxlength="60" placeholder="Your name" required autocomplete="name" />
+    </label>
+    <label class="checkout-field">Phone number
+      <input id="custPhone" maxlength="20" placeholder="+91 98765 43210" required inputmode="tel" autocomplete="tel" />
+    </label>
+    <label class="checkout-field">Delivery address
+      <textarea id="custAddress" maxlength="200" rows="2" placeholder="House / flat, street, landmark" required></textarea>
+    </label>
+    <label class="checkout-field">Note for us (optional)
+      <input id="custNote" maxlength="120" placeholder="e.g. Ring the bell twice" />
+    </label>
+    <div class="checkout-summary"><span>To pay</span><b id="checkoutFormTotal">₹0</b></div>
+    <p class="checkout-error" id="checkoutError" hidden></p>
+    <div class="checkout-actions">
+      <button type="button" class="btn-secondary" id="checkoutCancel">Cancel</button>
+      <button type="submit" class="btn-primary" id="checkoutConfirm">Place order</button>
+    </div>
+  </form>
+</div>
+
+<!-- Success modal -->
+<div class="modal-overlay" id="successOverlay" hidden>
+  <div class="success-card" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="success-check">
+      <svg viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="26" cy="26" r="23"/><path d="m15 27 7 7 15-16"/>
+      </svg>
+    </div>
+    <h3 id="successTitle">Order placed!</h3>
+    <p class="success-sub">Your order <b id="orderId">#INS0000</b> is being packed at our MG Road store.</p>
+    <div class="eta-box">
+      <div class="eta-label">Arriving in</div>
+      <div class="eta-time" id="etaTime">08:00</div>
+      <div class="eta-bar"><span id="etaBar"></span></div>
+    </div>
+    <div class="success-details">
+      <div><span>Delivering to</span><b id="successAddress">Home · MG Road</b></div>
+      <div><span>Order total</span><b id="successTotal">₹0</b></div>
+    </div>
+    <button class="btn-primary full" id="continueShopping">Continue shopping</button>
+  </div>
+</div>
+
+<!-- Mobile bottom cart bar -->
+<div class="mobile-cart-bar" id="mobileCartBar" hidden>
+  <div class="mobile-cart-info">
+    <span id="mobileCartCount">0 items</span>
+    <b id="mobileCartTotal">₹0</b>
+  </div>
+  <button id="mobileCartBtn">View cart →</button>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

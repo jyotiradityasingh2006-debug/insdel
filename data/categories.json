@@ -1,0 +1,58 @@
+[
+  {
+    "id": "fruits",
+    "name": "Fruits & Vegetables",
+    "emoji": "🥬",
+    "bg": "#e9f7e6",
+    "color": "#2f8f3e"
+  },
+  {
+    "id": "dairy",
+    "name": "Dairy & Breakfast",
+    "emoji": "🥛",
+    "bg": "#eaf3ff",
+    "color": "#3a7bd5"
+  },
+  {
+    "id": "snacks",
+    "name": "Snacks & Munchies",
+    "emoji": "🍪",
+    "bg": "#fff3e2",
+    "color": "#d9822b"
+  },
+  {
+    "id": "drinks",
+    "name": "Cold Drinks & Juices",
+    "emoji": "🥤",
+    "bg": "#e8f8f8",
+    "color": "#1a9e9e"
+  },
+  {
+    "id": "bakery",
+    "name": "Bakery & Biscuits",
+    "emoji": "🍞",
+    "bg": "#fdf0e6",
+    "color": "#b9783f"
+  },
+  {
+    "id": "instant",
+    "name": "Instant & Frozen",
+    "emoji": "🍜",
+    "bg": "#fdeaea",
+    "color": "#d64545"
+  },
+  {
+    "id": "personal",
+    "name": "Personal Care",
+    "emoji": "🧴",
+    "bg": "#f3ecfd",
+    "color": "#8e5bd8"
+  },
+  {
+    "id": "home",
+    "name": "Home & Cleaning",
+    "emoji": "🧹",
+    "bg": "#eafcf1",
+    "color": "#1f8a5b"
+  }
+]

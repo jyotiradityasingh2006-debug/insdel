@@ -1,0 +1,5 @@
+node_modules/
+data/secret.key
+data/orders.json
+*.log
+.DS_Store

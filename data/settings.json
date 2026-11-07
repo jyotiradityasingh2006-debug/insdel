@@ -1,0 +1,11 @@
+{
+  "storeName": "Insdel Store",
+  "address": "Shop 12, MG Road, Near City Mall, Bengaluru 560001",
+  "phone": "+91 98765 43210",
+  "hours": "7:00 AM – 11:00 PM",
+  "etaMinutes": 8,
+  "freeDeliveryAt": 199,
+  "deliveryFee": 29,
+  "handlingFee": 2,
+  "serviceRadiusKm": 3
+}

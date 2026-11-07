@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>insdel Admin — Store dashboard</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b7a3b'/%3E%3Cpath d='M36 8 16 36h14l-4 20 22-30H33l3-18z' fill='%23ffd43b'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+
+<!-- ============ Login ============ -->
+<div class="login-view" id="loginView">
+  <div class="login-art" aria-hidden="true">
+    <span class="blob b1"></span><span class="blob b2"></span>
+    <div class="login-emojis">🥬 🥛 🍞 🥤</div>
+  </div>
+  <div class="login-card">
+    <a href="/" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13.5 2 4.5 13.5h6L9.5 22l10-12.5h-6.2L13.5 2Z" fill="currentColor"/></svg>
+      </span>
+      <span class="logo-text">ins<span>del</span></span>
+    </a>
+    <h1>Admin login</h1>
+    <p class="login-sub">Manage products, orders and your store — all in one place.</p>
+    <form id="loginForm">
+      <label class="field">
+        <span>Admin password</span>
+        <div class="password-wrap">
+          <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required />
+          <button type="button" class="show-pass" id="showPassBtn" aria-label="Show password">👁️</button>
+        </div>
+      </label>
+      <p class="form-error" id="loginError" hidden></p>
+      <button class="btn-primary full" id="loginBtn" type="submit">Sign in →</button>
+    </form>
+    <a href="/" class="back-link">← Back to store</a>
+  </div>
+</div>
+
+<!-- ============ Admin app ============ -->
+<div class="app" id="appView" hidden>
+  <aside class="sidebar">
+    <a href="/" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M13.5 2 4.5 13.5h6L9.5 22l10-12.5h-6.2L13.5 2Z" fill="currentColor"/></svg>
+      </span>
+      <span class="logo-text">ins<span>del</span></span>
+    </a>
+    <span class="admin-tag">ADMIN</span>
+
+    <nav class="side-nav">
+      <button class="side-link active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Dashboard
+      </button>
+      <button class="side-link" data-view="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5Z"/><path d="m3 8 9 5 9-5"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        Products
+      </button>
+      <button class="side-link" data-view="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2V2Z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+        Orders
+        <span class="side-badge" id="pendingBadge" hidden>0</span>
+      </button>
+      <button class="side-link" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.09a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"/></svg>
+        Settings
+      </button>
+    </nav>
+
+    <div class="side-foot">
+      <a href="/" target="_blank" rel="noopener" class="side-store">🛍️ View store ↗</a>
+      <button class="side-logout" id="logoutBtn">Log out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1 id="viewTitle">Dashboard</h1>
+        <p id="viewSub">Overview of your store</p>
+      </div>
+      <div class="topbar-right">
+        <span class="live-dot"></span>
+        <span id="storeLabel">Insdel Store</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- Dashboard -->
+      <section class="view" id="view-dashboard">
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-icon revenue">₹</span>
+            <div class="stat-body">
+              <span class="stat-label">Revenue today</span>
+              <b id="statRevenue">₹0</b>
+              <small id="statRevenueSub">No orders yet today</small>
+            </div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon orders">🧾</span>
+            <div class="stat-body">
+              <span class="stat-label">Orders today</span>
+              <b id="statOrders">0</b>
+              <small id="statOrdersSub">All statuses</small>
+            </div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon pending">⏱️</span>
+            <div class="stat-body">
+              <span class="stat-label">Pending orders</span>
+              <b id="statPending">0</b>
+              <small id="statPendingSub">To pack & deliver</small>
+            </div>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon products">📦</span>
+            <div class="stat-body">
+              <span class="stat-label">Live products</span>
+              <b id="statProducts">0</b>
+              <small id="statProductsSub">Across 0 categories</small>
+            </div>
+          </article>
+        </div>
+
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Recent orders</h2>
+              <button class="link-btn" data-view="orders">View all →</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
+                <tbody id="recentOrdersBody"></tbody>
+              </table>
+            </div>
+            <div class="panel-empty" id="recentEmpty" hidden>
+              <span>🧾</span>
+              <p>No orders yet. They'll appear here as soon as a customer checks out.</p>
+            </div>
+          </div>
+
+          <div class="panel store-panel">
+            <div class="panel-head"><h2>Store status</h2><span class="live-pill"><span class="live-dot"></span>Open</span></div>
+            <div class="store-info" id="storeInfo"></div>
+            <div class="store-actions">
+              <button class="btn-ghost" data-view="settings">Edit settings</button>
+              <a class="btn-ghost" href="/" target="_blank" rel="noopener">View store ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section class="view" id="view-products" hidden>
+        <div class="view-toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="text" id="productSearch" placeholder="Search products…" autocomplete="off" />
+          </div>
+          <button class="btn-primary" id="addProductBtn">+ Add product</button>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="data-table products-table">
+              <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>MRP</th><th>Badge</th><th class="right">Actions</th></tr></thead>
+              <tbody id="productsBody"></tbody>
+            </table>
+          </div>
+          <div class="panel-empty" id="productsEmpty" hidden><span>📦</span><p>No products match your search.</p></div>
+        </div>
+        <p class="table-note" id="productsCount"></p>
+      </section>
+
+      <!-- Orders -->
+      <section class="view" id="view-orders" hidden>
+        <div class="status-filters" id="orderFilters"></div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="data-table orders-table">
+              <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Placed</th><th></th></tr></thead>
+              <tbody id="ordersBody"></tbody>
+            </table>
+          </div>
+          <div class="panel-empty" id="ordersEmpty" hidden><span>🧾</span><p>No orders in this view yet.</p></div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="view" id="view-settings" hidden>
+        <form id="settingsForm" class="settings-grid">
+          <div class="panel">
+            <div class="panel-head"><h2>Store details</h2></div>
+            <div class="form-grid">
+              <label class="field"><span>Store name</span><input id="sName" maxlength="80" required /></label>
+              <label class="field"><span>Phone</span><input id="sPhone" maxlength="80" /></label>
+              <label class="field full"><span>Store address</span><input id="sAddress" maxlength="200" required /></label>
+              <label class="field full"><span>Opening hours</span><input id="sHours" maxlength="80" /></label>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h2>Delivery &amp; charges</h2></div>
+            <div class="form-grid">
+              <label class="field"><span>Delivery ETA (minutes)</span><input id="sEta" type="number" min="1" max="120" required /></label>
+              <label class="field"><span>Service radius (km)</span><input id="sRadius" type="number" min="0.5" max="100" step="0.5" required /></label>
+              <label class="field"><span>Free delivery above (₹)</span><input id="sFree" type="number" min="0" step="1" required /></label>
+              <label class="field"><span>Delivery fee (₹)</span><input id="sFee" type="number" min="0" step="1" required /></label>
+              <label class="field"><span>Handling fee (₹)</span><input id="sHandling" type="number" min="0" step="1" required /></label>
+            </div>
+          </div>
+          <div class="settings-actions">
+            <p class="form-error" id="settingsError" hidden></p>
+            <button class="btn-primary" type="submit" id="settingsSave">Save changes</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Product modal -->
+<div class="modal-overlay" id="productModal" hidden>
+  <form class="modal-card product-form" id="productForm">
+    <div class="modal-head">
+      <h2 id="productModalTitle">Add product</h2>
+      <button type="button" class="modal-close" id="productClose" aria-label="Close">✕</button>
+    </div>
+    <input type="hidden" id="pId" />
+    <div class="form-grid">
+      <label class="field full"><span>Product name</span><input id="pName" maxlength="80" placeholder="Amul Taaza Toned Milk" required /></label>
+      <label class="field"><span>Unit / pack size</span><input id="pUnit" maxlength="60" placeholder="500 ml" required /></label>
+      <label class="field"><span>Emoji / icon</span><input id="pEmoji" maxlength="16" placeholder="🥛" /></label>
+      <label class="field"><span>Category</span><select id="pCat" required></select></label>
+      <label class="field"><span>Badge</span>
+        <select id="pTag">
+          <option value="">None</option>
+          <option value="bestseller">Bestseller</option>
+          <option value="fresh">Fresh</option>
+          <option value="deal">Deal</option>
+        </select>
+      </label>
+      <label class="field"><span>Selling price (₹)</span><input id="pPrice" type="number" min="0" step="0.5" required /></label>
+      <label class="field"><span>MRP (₹)</span><input id="pMrp" type="number" min="0" step="0.5" required /></label>
+    </div>
+    <p class="form-error" id="productError" hidden></p>
+    <div class="modal-actions">
+      <button type="button" class="btn-ghost" id="productCancel">Cancel</button>
+      <button type="submit" class="btn-primary" id="productSave">Save product</button>
+    </div>
+  </form>
+</div>
+
+<!-- Order modal -->
+<div class="modal-overlay" id="orderModal" hidden>
+  <div class="modal-card order-modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 id="orderModalTitle">Order</h2>
+      <button type="button" class="modal-close" id="orderClose" aria-label="Close">✕</button>
+    </div>
+    <div id="orderModalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="adminToast" hidden></div>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>
